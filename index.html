@@ -58,7 +58,7 @@ nav.gnb a:hover::after{width:100%}
 .qcard:hover .go{opacity:1}
 
 /* ── Sections ── */
-section.list{padding:64px 0 8px}
+section.list{padding:64px 20px 8px}
 .sec-hd{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:22px}
 .sec-hd h2{font-size:22px;font-weight:800;color:var(--navy)}
 .sec-hd h2 span{color:var(--gold);font-size:14px;font-weight:700;margin-left:10px;letter-spacing:.06em}
@@ -66,6 +66,7 @@ section.list{padding:64px 0 8px}
 .sec-hd .more:hover{color:var(--navy)}
 .two-col{display:grid;grid-template-columns:1fr 1fr;gap:40px}
 @media(max-width:820px){.two-col{grid-template-columns:1fr}}
+@media(max-width:600px){.sec-hd h2 span{display:block;margin-left:0;margin-top:2px;font-size:11px;letter-spacing:.12em}.sec-hd{align-items:flex-start}.sec-hd .more{white-space:nowrap;padding-top:4px}}
 ul.items{list-style:none;border-top:2px solid var(--navy)}
 ul.items li{border-bottom:1px solid var(--line)}
 ul.items a{display:flex;align-items:center;gap:14px;padding:16px 4px;transition:background .2s}
