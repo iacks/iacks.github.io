@@ -164,7 +164,9 @@ document.getElementById('cr').addEventListener('touchend',e=>{
   if(x0===null)return; const dx=e.changedTouches[0].clientX-x0;
   if(dx>40)show(i-1); else if(dx<-40)show(i+1); x0=null;
 },{passive:true});
-show(0);
+let h=parseInt((location.hash||'').replace('#',''));
+let start=DATA.findIndex(c=>c.n===h);
+show(start>=0?start:0);
 </script>
 </div></main>
 <footer><div class="wrap">
