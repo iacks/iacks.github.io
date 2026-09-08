@@ -116,9 +116,31 @@ main.content{padding:48px 20px 24px}
 
 <main class="content wrap"><div class="doc">
 <h2>공지사항</h2>
-<div class="item-card">
-<h3>제19대 임원진 출범 및 회장 인사말 게재</h3>
-<div class="meta">2026. 9. 1.</div>
+<div id="notice-list"><p class="note">공지를 불러오는 중...</p></div>
+<script>
+async function loadList(file){
+  try{
+    const r = await fetch(file + '?v=' + Date.now());
+    if(!r.ok) throw 0;
+    return (await r.text()).split('\n').map(l=>l.trim())
+      .filter(l=>l && !l.startsWith('#'))
+      .map(l=>l.split('|').map(s=>s.trim()));
+  }catch(e){ return null; }
+}
+function el(tag, cls, text){ const e=document.createElement(tag); if(cls)e.className=cls; if(text!==undefined)e.textContent=text; return e; }
+</script><script>
+loadList('notices.txt').then(rows=>{
+  const box=document.getElementById('notice-list'); box.innerHTML='';
+  if(!rows){ box.appendChild(el('p','note','공지를 불러오지 못했습니다. 새로고침해 주세요.')); return; }
+  rows.filter(r=>r.length>=3).forEach(r=>{
+    const card=el('div','item-card');
+    card.appendChild(el('h3','',r[1]));
+    const m=el('div','meta',r[0]); card.appendChild(m);
+    const p=el('p','',r[2]); p.style.cssText='margin:0;font-size:14.5px'; card.appendChild(p);
+    box.appendChild(card);
+  });
+});
+</script>
 <p style="margin:0;font-size:14.5px">국제비교한국학회 제19대 임원진(2026.9.1.~2028.8.31.)이 출범하였습니다. 곽효환 신임 회장의 인사말은 <a href="intro.html" style="color:var(--navy);font-weight:700;text-decoration:underline">학회소개</a>에서 보실 수 있습니다.</p>
 </div>
 <h2>회원 가입 안내</h2>
